@@ -4,7 +4,7 @@ class MyMenu:
     def __init__(self, items: dict) -> None:
         self.menu_items = items
             
-    def draw_menu(self):
+    def draw_menu(self) -> None:
         for item in self.menu_items:
             print(f"{item}. {self.menu_items[item]}")
 

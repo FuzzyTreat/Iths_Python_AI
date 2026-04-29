@@ -9,6 +9,28 @@ def clear_screen() -> None:
     else:
         _ = system('clear')
 
+def run(mymenu: menu, menuoptions: dict) -> None:
+    
+    while True:
+        clear_screen()
+        
+        mymenu.draw_menu()
+        
+        selected = mymenu.get_input()
+
+        match selected:
+            case 0:
+                print("Terminating program...")
+                break
+            case 1 | 2:
+                print("\n")
+                print(menuoptions[selected])
+                print("\n")
+                sleep(2)
+
+        # it is a bit quick, so the resulkt is not visible long enough
+        _ = input()
+
 def main():
     thisdict = {
         1: "Select option 1.",
@@ -17,26 +39,9 @@ def main():
         }
     
     myMenu = menu.MyMenu(thisdict)
-    
-    while True:
-        clear_screen()
-        myMenu.draw_menu()
-        selected = myMenu.get_input()
+       
+    run(myMenu, thisdict)
         
-        print(selected)
-        
-        match selected:
-            case 0:
-                print("Terminating program...")
-                break
-            case 1,2:
-                print("\n")
-                print(thisdict[selected])
-                print("\n")
-                sleep(2)
-
-        # it is a bit quick, so the resulkt is not visible long enough
-        _ = input()
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     main()
