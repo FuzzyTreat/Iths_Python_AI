@@ -1,7 +1,5 @@
 from os import system, name
-from time import sleep
 import menu
-
 
 def clear_screen() -> None:
     if name == 'nt':
@@ -9,29 +7,14 @@ def clear_screen() -> None:
     else:
         _ = system('clear')
         
-def handle_selection(choice: int, menuoptions: dict) -> bool:
-    match choice:
-        case 0:
-            print("Terminating program...")
-            return False
-        case 1 | 2:
-            print("\n")
-            print(menuoptions[choice])
-            print("\n")
-            sleep(2)
-
-    # it is a bit quick, so the resulkt is not visible long enough
-    _ = input()
-    return True
-
-def run(mymenu: menu, menuoptions: dict) -> None:
+def run(mymenu: menu) -> None:
     
     while True:
         clear_screen()
         mymenu.draw_menu()
         selected = mymenu.get_input()
         
-        if not handle_selection(selected, menuoptions):
+        if not mymenu.handle_response(selected):
             break
 
 def main():
@@ -43,7 +26,7 @@ def main():
     
     myMenu = menu.MyMenu(thisdict)
        
-    run(myMenu, thisdict)
+    run(myMenu)
         
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
