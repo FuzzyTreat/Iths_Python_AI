@@ -1,21 +1,22 @@
 from os import system, name
 from time import sleep
 import menu
+import json
 
 def clear_screen() -> None:
     if name == 'nt':
         _ = system('cls')
     else:
         _ = system('clear')
-        
-def handle_response(choice: int) -> bool:
+               
+def handle_response(choice: int, menu_items: dict) -> bool:
     match choice:
         case 0:
             print("Terminating program...")
             return False
         case 1 | 2:
             print("\n")
-            print(self.menu_items[choice])
+            print(menu_items[choice])
             print("\n")
             sleep(2)
     
@@ -30,7 +31,7 @@ def run(mymenu: menu) -> None:
         mymenu.draw_menu()
         selected = mymenu.get_input()
         
-        if not handle_response(selected):
+        if not handle_response(selected, mymenu.get_menu_items):
             break
         
 def main():
@@ -39,7 +40,7 @@ def main():
         2: "Select option 2.",
         0: "Exit"
     }
-    
+
     myMenu = menu.MyMenu(thisdict)
        
     run(myMenu)

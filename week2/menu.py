@@ -10,3 +10,6 @@ class MyMenu:
     def get_input(self) -> int:
         choice = input("Choice: ")
         return int(choice)
+    
+    def get_menu_items(self) -> dict:
+        return self.menu_items
